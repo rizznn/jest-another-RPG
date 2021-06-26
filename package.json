@@ -1,0 +1,22 @@
+{
+  "name": "package.json",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rizznn/jest-another-RPG.git"
+  },
+  "author": "rizzel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rizznn/jest-another-RPG/issues"
+  },
+  "homepage": "https://github.com/rizznn/jest-another-RPG#readme",
+  "devDependencies": {
+    "jest": "^27.0.5"
+  }
+}
