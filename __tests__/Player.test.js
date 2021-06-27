@@ -4,8 +4,6 @@ const Potion = require('../lib/Potion'); //imports the Potion() constructor into
 // mocks/replaces the constructor's implementation with our faked data = mocked data will be returned
 jest.mock('../lib/Potion');
 
-console.log(new Potion());
-
 test('creates a player object', () => {
     const player = new Player('Dave');
   
@@ -72,4 +70,35 @@ test("subtracts from player's health", () => {
     player.reduceHealth(99999);
   
     expect(player.health).toBe(0);
+});
+
+// The following code shows how to create a new test that verifies that a player's attack value is within range
+test("gets player's attack value", () => {
+    const player = new Player('Dave');
+    player.strength = 10;
+  
+    expect(player.getAttackValue()).toBeGreaterThanOrEqual(5);
+    expect(player.getAttackValue()).toBeLessThanOrEqual(15);
+});
+
+// we keep track of the old count so that we can ensure that adding a potion to our inventory actually increases the length of the player.inventory array.
+test('adds a potion to the inventory', () => {
+    const player = new Player('Dave');
+    const oldCount = player.inventory.length;
+  
+    player.addPotion(new Potion());
+  
+    expect(player.inventory.length).toBeGreaterThan(oldCount);
+});
+
+// we need to write tests that ensure that usePotion() removes the correct Potion from the Player inventory.
+// What is the correct Potion? Eventually, our Player will select which Potion to use from the inventory. We will use the index of the Potion to keep track of which one has been selected.
+test('uses a potion from inventory', () => {
+    const player = new Player('Dave');
+    player.inventory = [new Potion(), new Potion(), new Potion()];
+    const oldCount = player.inventory.length;
+  
+    player.usePotion(1);
+  
+    expect(player.inventory.length).toBeLessThan(oldCount);
 });
